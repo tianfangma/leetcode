@@ -56,3 +56,5 @@ public:
         return res;
     }
 };
+
+//Morris algorithm
