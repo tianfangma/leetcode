@@ -31,3 +31,28 @@ public:
 };
 
 //iteration edition
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(root==nullptr)
+        {
+            return res;
+        }
+        stack<TreeNode*> stk;
+        TreeNode* node = root;
+        while(!stk.empty()||node!=nullptr)
+        {
+            while(node!=nullptr)
+            {
+                stk.emplace(node);
+                node=node->left;
+            }
+            node=stk.top();
+            stk.pop();
+            res.emplace_back(node->val);
+            node=node->right;
+        }
+        return res;
+    }
+};
