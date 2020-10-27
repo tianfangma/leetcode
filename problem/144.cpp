@@ -33,3 +33,29 @@ public:
 };
 
 //iteration edition
+class Solution2 {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> result;
+        
+        if(root==nullptr)
+        {
+            return result;
+        }
+        stack<TreeNode*> s;
+        TreeNode* node=root;
+        while(node!=nullptr||!s.empty())
+        {
+            while(node!=nullptr)
+            {
+                result.emplace_back(node->val);
+                s.emplace(node);
+                node=node->left;
+            }
+            node=s.top();
+            s.pop();
+            node=node->right;
+        }
+        return result;
+    }
+};
