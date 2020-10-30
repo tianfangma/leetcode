@@ -30,4 +30,28 @@ public:
     }
 };
 
-//
+//建立状态结构
+struct subTreeStatus
+ {
+     int selected;
+     int notselected;
+ };
+class Solution {
+public:
+    subTreeStatus dfs(TreeNode* node)
+    {
+        if(node==nullptr)
+        {
+            return {0,0};
+        }
+        auto l = dfs(node->left);
+        auto r = dfs(node->right);
+        int selected =node->val+l.notselected+r.notselected;
+        int notselected=max(l.notselected,l.selected)+max(r.selected,r.notselected);
+        return {selected,notselected};
+    }
+    int rob(TreeNode* root) {
+        auto rootStatus = dfs(root);
+        return max(rootStatus.selected,rootStatus.notselected);
+    }
+};
