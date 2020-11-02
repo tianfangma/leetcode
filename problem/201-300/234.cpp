@@ -68,10 +68,10 @@ public:
         }
 
         ListNode*firstHalfEnd=endOfFirstHalf(head);
-        ListNode*secondHalfEnd=reverseList(firstHalfEnd->next);
+        ListNode*secondHalfStart=reverseList(firstHalfEnd->next);
         
         ListNode*p1=head;
-        ListNode*p2=secondHalfEnd;
+        ListNode*p2=secondHalfStart;
         
         bool res=true;
         while(p2!=nullptr)
@@ -84,6 +84,9 @@ public:
             p1=p1->next;
             p2=p2->next;
         }
+        //还原链表
+        firstHalfEnd->next=reverseList(secondHalfStart);
+     
         return res;
     }
 };
