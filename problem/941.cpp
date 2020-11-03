@@ -65,3 +65,21 @@ public:
         return i==N-1;
     }
 };
+
+//most defeat
+class Solution {
+public:
+    bool validMountainArray(vector<int>& A) {
+        int len=A.size()-1;
+        int left=0,right=len;
+        while(left+1<=right&&A[left]<A[left+1])
+        {
+            left++;
+        }
+        while(right>0&&A[right]<A[right-1])
+        {
+            right--;
+        }
+        return left>0&&right<len&&left==right;
+    }
+};
