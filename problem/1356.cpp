@@ -1,4 +1,4 @@
-by tianfangma
+//by tianfangma
 class Solution {
 public:
     int toBinary(int num)
@@ -39,5 +39,55 @@ public:
             res.emplace_back(vec[i].first);
         }
         return res;
+    }
+};
+
+//official question explanation 
+class Solution {
+public:
+    int get(int x){
+        int res = 0;
+        while (x) {
+            res += (x % 2);
+            x /= 2;
+        }
+        return res;
+    }
+    vector<int> sortByBits(vector<int>& arr) {
+        vector<int> bit(10001, 0);
+        for (auto x: arr) {
+            bit[x] = get(x);
+        }
+        sort(arr.begin(),arr.end(),[&](int x,int y){
+            if (bit[x] < bit[y]) {
+                return true;
+            }
+            if (bit[x] > bit[y]) {
+                return false;
+            }
+            return x < y;
+        });
+        return arr;
+    }
+};
+
+//bit calculator
+class Solution {
+public:
+    vector<int> sortByBits(vector<int>& arr) {
+        vector<int> bit(10001, 0);
+        for (int i = 1;i <= 10000; ++i) {
+            bit[i] = bit[i>>1] + (i & 1);
+        }
+        sort(arr.begin(),arr.end(),[&](int x,int y){
+            if (bit[x] < bit[y]) {
+                return true;
+            }
+            if (bit[x] > bit[y]) {
+                return false;
+            }
+            return x < y;
+        });
+        return arr;
     }
 };
