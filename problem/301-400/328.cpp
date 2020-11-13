@@ -9,6 +9,7 @@
  * };
  */
  
+//by tianfangma
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
@@ -27,6 +28,27 @@ public:
             p2=p2->next;
         }      
         p1->next=temp;
+        return head;
+    }
+};
+
+//LeetCode-Solution
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (head == nullptr) {
+            return head;
+        }
+        ListNode* evenHead = head->next;
+        ListNode* odd = head;
+        ListNode* even = evenHead;
+        while (even != nullptr && even->next != nullptr) {
+            odd->next = even->next;
+            odd = odd->next;
+            even->next = odd->next;
+            even = even->next;
+        }
+        odd->next = evenHead;
         return head;
     }
 };
