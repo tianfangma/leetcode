@@ -38,3 +38,25 @@ public:
         return res;
     }
 };
+
+//leetcode solution
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        if(points.size()==0) return 0;
+        sort(points.begin(),points.end(),[=](const auto&a,const auto&b){
+            return a[1]<b[1];
+        });
+        int pos=points[0][1];
+        int res=1;
+        for(const auto&a:points)
+        {
+            if(a[0]>pos)
+            {
+                res++;
+                pos=a[1];
+            }
+        }
+        return res;
+    }
+};
