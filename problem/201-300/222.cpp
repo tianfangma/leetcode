@@ -7,23 +7,17 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- 
- //by tianfangma
+
+//by tianfangma
 class Solution {
 public:
-    int count=0;
-    void countNode(TreeNode* root)
-    {
+    int countNodes(TreeNode* root) {
         if(root==nullptr)
         {
-            return;
+            return 0;
         }
-        count++;
-        countNode(root->left);
-        countNode(root->right);
-    }
-    int countNodes(TreeNode* root) {
-        countNode(root);
-        return count;
+        int left = countNodes(root->left);
+        int right = countNodes(root->right);
+        return left+right+1;
     }
 };
